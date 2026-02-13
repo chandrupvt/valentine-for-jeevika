@@ -89,16 +89,49 @@ button{
   font-size:1.2rem;
 }
 
+/* Proposal Screen */
+#proposalScreen{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+#proposalScreen img{
+  width:250px;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  margin-bottom:20px;
+  animation:fadeIn 2s ease;
+}
+
+#proposalScreen h2{
+  color:white;
+  font-size:1.8rem;
+  animation:fadeIn 3s ease;
+}
+
 .heart{
   position:absolute;
-  color:#ff4f8b;
-  font-size:18px;
+  color:white;
+  font-size:20px;
   animation:float 6s linear infinite;
 }
 
 @keyframes float{
   from{transform:translateY(100vh)}
   to{transform:translateY(-10vh)}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(0.8)}
+  to{opacity:1;transform:scale(1)}
 }
 </style>
 </head>
@@ -126,8 +159,17 @@ button{
   <button class="no" onmouseover="moveNo(this)">No 🥹</button>
 
   <div class="message" id="message">
-    I knew it 😭❤️ I love you as always and forever, My Dear Pondatti Jeevika💍❤️‍🩹!
+    I knew it 😭❤️ I love you forever!
   </div>
+</div>
+
+<!-- New Proposal Screen -->
+<div id="proposalScreen">
+  <img src="jeevika.jpg" alt="Our Love">
+  <h2>
+    Forever Starts Today 💍❤️<br>
+    You & Me, Always and Forever Jeevika.
+  </h2>
 </div>
 
 <script>
@@ -142,7 +184,8 @@ function startLove(){
 }
 
 function sayYes(){
-  document.getElementById("message").style.display="block";
+  document.getElementById("mainCard").style.display="none";
+  document.getElementById("proposalScreen").style.display="flex";
   createHearts();
 }
 
@@ -153,7 +196,7 @@ function moveNo(btn){
 }
 
 function createHearts(){
-  for(let i=0;i<25;i++){
+  for(let i=0;i<30;i++){
     const heart=document.createElement("div");
     heart.className="heart";
     heart.innerHTML="❤";
