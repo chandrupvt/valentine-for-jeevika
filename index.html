@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>For Jeevika ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-
 <style>
 * { box-sizing: border-box; }
 
@@ -14,37 +12,29 @@ body {
   margin: 0;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
-  background-size: 400% 400%;
-  animation: gradientBG 12s ease infinite;
+  background: linear-gradient(135deg, #fbe7f0, #e8f0ff);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 .card {
   background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(10px);
   padding: 40px 30px;
-  border-radius: 25px;
+  border-radius: 24px;
   width: 90%;
-  max-width: 450px;
+  max-width: 420px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
   animation: fadeIn 2s ease;
 }
 
 h1 {
   margin: 0;
-  font-size: 2.3rem;
-  color: #ff2e7a;
+  font-size: 2.2rem;
+  color: #ff4f8b;
 }
 
 p {
@@ -66,17 +56,12 @@ button {
   font-size: 1rem;
   border-radius: 30px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .yes {
-  background: #ff2e7a;
+  background: #ff4f8b;
   color: #fff;
-}
-
-.yes:hover {
-  transform: scale(1.1);
-  box-shadow: 0 10px 30px rgba(255,46,122,0.4);
 }
 
 .no {
@@ -85,18 +70,11 @@ button {
   position: relative;
 }
 
-.music-btn {
-  margin-top: 20px;
-  background: #444;
-  color: white;
-}
-
 .message {
   display: none;
   margin-top: 25px;
   font-size: 1.3rem;
-  color: #ff2e7a;
-  animation: pop 1s ease;
+  color: #ff4f8b;
 }
 
 @keyframes fadeIn {
@@ -104,15 +82,10 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pop {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
 .heart {
   position: absolute;
-  color: #ff2e7a;
-  font-size: 20px;
+  color: #ff4f8b;
+  font-size: 18px;
   animation: float 6s linear infinite;
   opacity: 0.7;
 }
@@ -126,14 +99,13 @@ button {
 
 <body>
 
-<!-- 🎵 Background Music -->
-<audio id="bgMusic" loop>
+<!-- 🎵 AUTO PLAY MUSIC -->
+<audio id="bgMusic" autoplay loop>
   <source src="love.mp3" type="audio/mp3">
 </audio>
 
 <div class="card">
   <h1>Jeevika ❤️</h1>
-
   <p>
     From the moment you came into my life, everything became softer,
     warmer, and more beautiful.
@@ -148,8 +120,6 @@ button {
     <button class="no" onmouseover="moveNo(this)">No 🙈</button>
   </div>
 
-  <button class="music-btn" onclick="toggleMusic()">🎵 Play / Pause Music</button>
-
   <div class="message" id="message">
     I knew it 😭❤️ I love you forever, My Dear Pondatti Jeevika!
   </div>
@@ -157,12 +127,16 @@ button {
 
 <script>
 
-const music = document.getElementById("bgMusic");
-let isPlaying = false;
+window.addEventListener("load", function() {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.5;
+  music.play().catch(() => {
+    console.log("Autoplay blocked by browser.");
+  });
+});
 
 function sayYes() {
   document.getElementById('message').style.display = 'block';
-  fadeInMusic();
   createHearts();
 }
 
@@ -172,34 +146,8 @@ function moveNo(btn) {
   btn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-function toggleMusic() {
-  if (isPlaying) {
-    music.pause();
-    isPlaying = false;
-  } else {
-    music.play();
-    isPlaying = true;
-  }
-}
-
-function fadeInMusic() {
-  music.volume = 0;
-  music.play();
-  isPlaying = true;
-
-  let vol = 0;
-  const interval = setInterval(() => {
-    if (vol < 1) {
-      vol += 0.05;
-      music.volume = vol;
-    } else {
-      clearInterval(interval);
-    }
-  }, 200);
-}
-
 function createHearts() {
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 20; i++) {
     const heart = document.createElement('div');
     heart.className = 'heart';
     heart.innerHTML = '❤';
